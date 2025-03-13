@@ -1,4 +1,4 @@
-package tareaSet;
+package CuerpoCeleste;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -45,14 +45,18 @@ public class CuerpoCeleste {
         return false;
     }
 
-    public CuerpoCeleste equals(String nombre, TipoCuerpoCeleste tipoCuerpoCeleste){
-        for(CuerpoCeleste cuerpo: satelites) {
-            if (getNombre().equalsIgnoreCase(nombre) && getTipoCuerpo().equals(tipoCuerpoCeleste)){
-                return cuerpo;
-            }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj){
+            return true;
         }
-        return null;
+        if (obj == null || getClass() != obj.getClass()){
+            return false;
+        }
+        CuerpoCeleste that = (CuerpoCeleste) obj;
+        return nombre.equals(that.nombre) && tipoCuerpo == that.tipoCuerpo;
     }
+
 
     @Override
     public int hashCode() {

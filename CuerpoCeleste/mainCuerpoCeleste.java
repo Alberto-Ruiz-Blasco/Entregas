@@ -1,4 +1,4 @@
-package tareaSet;
+package CuerpoCeleste;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -44,7 +44,7 @@ public class mainCuerpoCeleste {
         sistemaSolar.put(neptuno.getNombre(), neptuno);
         planetas.add(neptuno);
 
-        CuerpoCeleste pluton = new Planeta("Plutón", 365);
+        CuerpoCeleste pluton = new Planeta("Plutón", 248);
         sistemaSolar.put(pluton.getNombre(), pluton);
         planetas.add(pluton);
 
@@ -106,14 +106,45 @@ public class mainCuerpoCeleste {
         }
 
         System.out.println();
-        System.out.println("-Plutón no se crea porque ya existe como planeta enano-");
+
+        System.out.println("<<AÑADIR PLUTÓN 884 COMO PLANETA>>");
+        CuerpoCeleste plutonOtro = new Planeta("Plutón", 884);
+        sistemaSolar.put(plutonOtro.getNombre(), plutonOtro);
+        planetas.add(plutonOtro);
+        for(CuerpoCeleste cuerpo: planetas) {
+            System.out.println(cuerpo);
+        }
+        System.out.println("Si tienen el mismo nombre, no se añade");
+
         System.out.println();
 
-        CuerpoCeleste plutonEnano = new Planeta("Plutón", 365);
-        sistemaSolar.put(pluton.getNombre(), pluton);
-        planetas.add(pluton);
-        System.out.println(plutonEnano);
-        System.out.println("-Si es enano sí se podría-");
+        System.out.println("<<AÑADIR PLUTÓN 884 COMO PLANETA ENANO>>");
+        CuerpoCeleste plutonEnano = new PlanetaEnano("Plutón", 365);
+        sistemaSolar.put(plutonEnano.getNombre(), plutonEnano);
+        planetas.add(plutonEnano);
+        for(CuerpoCeleste cuerpo: planetas) {
+            System.out.println(cuerpo);
+        }
+        System.out.println("Si que se podría porque se añade como planeta enano");
+
         System.out.println();
+
+        System.out.println("<<DIFERENCIA ENTRE PLANETAS Y LUNAS>>");
+        Set<CuerpoCeleste> diferenciaPlanetasLunas = new HashSet<>(planetas);
+        diferenciaPlanetasLunas.removeAll(lunas);
+
+        for (CuerpoCeleste cuerpo : diferenciaPlanetasLunas) {
+            System.out.println(cuerpo);
+        }
+
+        System.out.println();
+
+        System.out.println("<<INTERSECCIÓN ENTRE PLANETAS Y LUNAS>>");
+        Set<CuerpoCeleste> interseccionPlanetasLunas = new HashSet<>(planetas);
+        interseccionPlanetasLunas.retainAll(lunas);
+
+        for (CuerpoCeleste cuerpo : interseccionPlanetasLunas) {
+            System.out.println(cuerpo);
+        }
     }
 }

@@ -2,12 +2,9 @@ package BusElche;
 
 import java.util.*;
 
-public class mainBuses {
+public class mainBusElche {
 
     static Map<String, ParadaBus> lineaA = new HashMap<>();
-    static Map<String, ParadaBus> lineaI = new HashMap<>();
-    static Map<String, ParadaBus> lineaJ = new HashMap<>();
-    static Map<String, ParadaBus> lineaF = new HashMap<>();
     static List<Tramo> tramos = new ArrayList<>();
     static Set<ParadaBus> paradas = new HashSet<>();
 
@@ -122,84 +119,11 @@ public class mainBuses {
         lineaA.put(parada005.getNombre(), parada005);
         paradas.add(parada005);
 
-        lineaI.put(parada003.getNombre(), parada003);
-        paradas.add(parada003);
-
-        ParadaBus parada071 = new ParadaBus(71, "Jorge Juan-Reina Victoria", "Jorge Juan-Reina Victoria");
-        lineaI.put(parada071.getNombre(), parada071);
-        paradas.add(parada071);
-
-        ParadaBus parada335 = new ParadaBus(335, "Gabriel Miró", "Gabriel Miró");
-        lineaI.put(parada335.getNombre(), parada335);
-        paradas.add(parada335);
-
-        ParadaBus parada346 = new ParadaBus(346, "Passeig de les Germanies", "Passeig de les Germanies");
-        lineaI.put(parada346.getNombre(), parada346);
-        paradas.add(parada346);
-
-        ParadaBus parada347 = new ParadaBus(347, "Federico G.Lorca-Asilo", "Federico G.Lorca-Asilo");
-        lineaI.put(parada347.getNombre(), parada347);
-        paradas.add(parada347);
-
-        ParadaBus parada115 = new ParadaBus(115, "Centre-Avg. C.Valenciana", "Centre-Avg. C.Valenciana");
-        lineaJ.put(parada115.getNombre(), parada115);
-        paradas.add(parada115);
-
-        lineaJ.put(parada002.getNombre(), parada002);
-        paradas.add(parada002);
-
-        ParadaBus parada089 = new ParadaBus(89, "Avinguda Llibertat", "Avinguda Llibertat, 11");
-        lineaJ.put(parada089.getNombre(), parada089);
-        paradas.add(parada089);
-
-        ParadaBus parada090 = new ParadaBus(90, "Renfe-Parc Municipal", "Renfe-Parc Municipal");
-        lineaJ.put(parada090.getNombre(), parada090);
-        paradas.add(parada090);
-
-        ParadaBus parada117 = new ParadaBus(117, "Virgen de la Cabeza", "Virgen de la Cabeza-LI. del Pensionista");
-        lineaJ.put(parada117.getNombre(), parada117);
-        paradas.add(parada117);
-
-        lineaF.put(parada115.getNombre(), parada115);
-        paradas.add(parada115);
-
-        lineaF.put(parada002.getNombre(), parada002);
-        paradas.add(parada002);
-
-        ParadaBus parada056 = new ParadaBus(56, "Cristóbal Sanz", "Cristóbal Sanz");
-        lineaF.put(parada056.getNombre(), parada056);
-        paradas.add(parada056);
-
-        lineaF.put(parada089.getNombre(), parada089);
-        paradas.add(parada089);
-
-        lineaF.put(parada090.getNombre(), parada090);
-        paradas.add(parada090);
-
-
         tramos.add(new Tramo("A", 1, 2, 75));
         tramos.add(new Tramo("A", 2, 3, 60));
         tramos.add(new Tramo("A", 3, 4, 40));
         tramos.add(new Tramo("A", 4, 5, 50));
         tramos.add(new Tramo("A", 5, 6, 80));
-
-        tramos.add(new Tramo("I", 3, 71, 50));
-        tramos.add(new Tramo("I", 71, 335, 100));
-        tramos.add(new Tramo("I", 335, 346, 70));
-        tramos.add(new Tramo("I", 346, 347, 50));
-        tramos.add(new Tramo("I", 347, 400, 120));
-
-        tramos.add(new Tramo("J", 115, 2, 125));
-        tramos.add(new Tramo("J", 2, 89, 75));
-        tramos.add(new Tramo("J", 56, 90, 40));
-        tramos.add(new Tramo("J", 89, 117, 80));
-        tramos.add(new Tramo("J", 90, 600, 40));
-
-        tramos.add(new Tramo("F", 115, 2, 125));
-        tramos.add(new Tramo("F", 2, 56, 45));
-        tramos.add(new Tramo("F", 56, 89, 40));
-        tramos.add(new Tramo("F", 89, 90, 75));
-        tramos.add(new Tramo("F", 90, 900, 70));
     }
 
     private static ParadaBus buscarParada(int numero) {
@@ -245,3 +169,4 @@ public class mainBuses {
         return new ArrayList<>();
     }
 }
+

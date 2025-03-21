@@ -1,3 +1,5 @@
+// Alberto Ruiz Blasco
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -8,19 +10,20 @@ public class mainEmpleado {
     private static Scanner scanner = new Scanner(System.in);
     private static datosEmpleado datosempleado = new datosEmpleado();
 
-    public static void play(){
-        System.out.println("------------------------------");
-        System.out.println("0- Salir");
-        System.out.println("1- Insertar empleado");
-        System.out.println("2- Eliminar empleado");
-        System.out.println("3- Actualizar empleado");
-        System.out.println("4- Consultar empleado");
-        System.out.println("5- Imprimir lista de empleados");
-        System.out.println("6- Imprimir menú");
-        System.out.println("------------------------------");
+    public static void play() {
+        System.out.println("--------------------------------------");
+        System.out.println("|0- Salir                            |");
+        System.out.println("|1- Insertar empleado                |");
+        System.out.println("|2- Eliminar empleado                |");
+        System.out.println("|3- Actualizar empleado              |");
+        System.out.println("|4- Consultar empleado               |");
+        System.out.println("|5- Imprimir lista de empleados      |");
+        System.out.println("|6- Imprimir menú                    |");
+        System.out.println("|7- Imprimir empleados en formato XML|");
+        System.out.println("-------------------------------------|");
     }
 
-    public static void addNewEmployee(){
+    public static void addNewEmployee() {
         System.out.println("<<INSERTAR EMPLEADO>>");
         int id;
         String name;
@@ -36,7 +39,7 @@ public class mainEmpleado {
 
                 scanner.nextLine();
 
-                if (!(datosempleado.queryEmpleado(id) == null)){
+                if (!(datosempleado.queryEmpleado(id) == null)) {
                     System.out.println("Ya hay un empleado con este id");
                     id = -1;
                 }
@@ -56,7 +59,7 @@ public class mainEmpleado {
             System.out.print("Introduce el nombre del empleado: ");
             name = scanner.nextLine();
 
-            if (!name.matches("[a-zA-Z]+")){
+            if (!name.matches("[a-zA-Z]+")) {
                 System.out.println("Error. Formato no válido");
             }
         } while (!name.matches("[a-zA-Z]+"));
@@ -65,7 +68,7 @@ public class mainEmpleado {
             System.out.print("Introduce el cargo: ");
             cargo = scanner.nextLine();
 
-            if (!cargo.matches("[a-zA-Z\\s]+")){
+            if (!cargo.matches("[a-zA-Z\\s]+")) {
                 System.out.println("Error. Formato no válido");
             }
         } while (!cargo.matches("[a-zA-Z\\s]+"));
@@ -81,14 +84,14 @@ public class mainEmpleado {
         } while (fcontratacion == null);
 
         Empleado empleado = new Empleado(id, name, cargo, fcontratacion);
-        if (datosempleado.addNewEmpleado(empleado)){
+        if (datosempleado.addNewEmpleado(empleado)) {
             System.out.println("Se ha añadido correctamente");
         } else {
             System.out.println("Error. Este empleado ya existe");
         }
     }
 
-    public static void eliminarEmpleado(){
+    public static void eliminarEmpleado() {
         System.out.println("<<ELIMINAR EMPLEADO>>");
         int id;
 
@@ -99,7 +102,7 @@ public class mainEmpleado {
 
                 scanner.nextLine();
 
-                if ((datosempleado.queryEmpleado(id) == null)){
+                if ((datosempleado.queryEmpleado(id) == null)) {
                     System.out.println("No se ha encontrado el empleado");
                     id = -1;
                 }
@@ -116,7 +119,7 @@ public class mainEmpleado {
         } while (id < 0);
 
         Empleado empleado = datosempleado.queryEmpleado(id);
-        if (empleado == null){
+        if (empleado == null) {
             System.out.println("No se ha encontrado el empleado");
             return;
         }
@@ -124,7 +127,7 @@ public class mainEmpleado {
         System.out.println("<<Empleado eliminado>>");
     }
 
-    public static void actualizarEmpleado(){
+    public static void actualizarEmpleado() {
         System.out.println("<<ACTUALIZAR EMPLEADO>>");
         int id, newId;
         String newName, newCargo;
@@ -139,7 +142,7 @@ public class mainEmpleado {
 
                 scanner.nextLine();
 
-                if ((datosempleado.queryEmpleado(id) == null)){
+                if ((datosempleado.queryEmpleado(id) == null)) {
                     System.out.println("Ya hay un empleado con este id");
                     id = -1;
                 }
@@ -156,7 +159,7 @@ public class mainEmpleado {
         } while (id < 0);
 
         Empleado oldEmployee = datosempleado.queryEmpleado(id);
-        if (oldEmployee == null){
+        if (oldEmployee == null) {
             System.out.println("Empleado no encontrado");
             return;
         }
@@ -168,7 +171,7 @@ public class mainEmpleado {
 
                 scanner.nextLine();
 
-                if (!(datosempleado.queryEmpleado(newId) == null)){
+                if (!(datosempleado.queryEmpleado(newId) == null)) {
                     System.out.println("Ya hay un empleado con este id");
                     newId = -1;
                 }
@@ -188,7 +191,7 @@ public class mainEmpleado {
             System.out.print("Introduce el nuevo nombre: ");
             newName = scanner.nextLine();
 
-            if (!newName.matches("[a-zA-Z]+")){
+            if (!newName.matches("[a-zA-Z]+")) {
                 System.out.println("Error. Formato no válido");
             }
         } while (!newName.matches("[a-zA-Z]+"));
@@ -197,7 +200,7 @@ public class mainEmpleado {
             System.out.print("Introduce el nuevo cargo: ");
             newCargo = scanner.nextLine();
 
-            if (!newCargo.matches("[a-zA-Z\\s]+")){
+            if (!newCargo.matches("[a-zA-Z\\s]+")) {
                 System.out.println("Error. Formato no válido");
             }
         } while (!newCargo.matches("[a-zA-Z\\s]+"));
@@ -213,11 +216,11 @@ public class mainEmpleado {
         } while (newDate == null);
 
         Empleado newEmployee = new Empleado(newId, newName, newCargo, newDate);
-        datosempleado.updateEmpleado(oldEmployee,newEmployee);
+        datosempleado.updateEmpleado(oldEmployee, newEmployee);
         System.out.println("Empleado actualizado");
     }
 
-    public static void consultarEmpleado(){
+    public static void consultarEmpleado() {
         System.out.println("<<CONSULTAR EMPLEADO>>");
         int id;
 
@@ -228,7 +231,7 @@ public class mainEmpleado {
 
                 scanner.nextLine();
 
-                if ((datosempleado.queryEmpleado(id) == null)){
+                if ((datosempleado.queryEmpleado(id) == null)) {
                     System.out.println("Ya hay un empleado con este id");
                     id = -1;
                 }
@@ -247,7 +250,7 @@ public class mainEmpleado {
 
         Empleado empleado;
         empleado = datosempleado.queryEmpleado(id);
-        if (empleado == null){
+        if (empleado == null) {
             System.out.println("Contacto no encontrado");
             return;
         }
@@ -255,8 +258,24 @@ public class mainEmpleado {
 
     }
 
-    public static void imprimirEmpleados(){
+    public static void imprimirEmpleados() {
         datosempleado.printEmpleado();
+    }
+
+    public static void imprimirXML(){
+        System.out.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        System.out.println("<empleados>");
+
+        for (Empleado empleado : datosempleado.getListaEmpleados()) {
+            System.out.println("    <empleado>");
+            System.out.println("        <id>" + empleado.getId() + "</id>");
+            System.out.println("        <nombre>" + empleado.getNombre() + "</nombre>");
+            System.out.println("        <cargo>" + empleado.getCargo() + "</cargo>");
+            System.out.println("        <fechaContratacion>" + empleado.getFcontratacion() + "</fechaContratacion>");
+            System.out.println("    </empleado>");
+        }
+
+        System.out.println("</empleados>");
     }
 
     public static void main(String[] args) {
@@ -264,13 +283,13 @@ public class mainEmpleado {
         int opcion = 0;
         play();
 
-        while (continuar){
+        while (continuar) {
             do {
                 try {
                     System.out.print("Elige una opción: ");
                     opcion = scanner.nextInt();
 
-                    if (opcion < 0 || opcion > 7) {
+                    if (opcion < 0 || opcion > 8) {
                         System.out.println("<<OPCIÓN NO VÁLIDA>> Debe ser un número entre 0 y 7");
                     }
                 } catch (Exception e) {
@@ -278,9 +297,9 @@ public class mainEmpleado {
                     scanner.next();
                     opcion = -1;
                 }
-            } while (opcion < 0 || opcion > 6);
+            } while (opcion < 0 || opcion > 8);
 
-            switch (opcion){
+            switch (opcion) {
                 case 0:
                     continuar = false;
                     System.out.println("Saliendo...");
@@ -302,6 +321,9 @@ public class mainEmpleado {
                     break;
                 case 6:
                     play();
+                    break;
+                case 7:
+                    imprimirXML();
                     break;
                 default:
                     System.out.println("OPCIÓN NO VÁLIDA");

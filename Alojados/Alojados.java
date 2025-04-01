@@ -6,13 +6,13 @@ import java.util.List;
 
 public class Alojados {
 
-    public static void ordenar(String ficheroEntrada, String ficheroSalida) {
+    public static void copiar(String ficheroEntrada, String ficheroSalida) {
         List<String> lineas = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(ficheroEntrada))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                if (linea.contains("H")) {
+                if (linea.substring(linea.length() - 3).contains("H")) {
                     lineas.add(linea);
                 }
             }
@@ -34,6 +34,6 @@ public class Alojados {
     public static void main(String[] args) {
         String ficheroEntrada = "C:\\Users\\SRQ2\\Desktop\\ALBERTO FP\\Programación\\Ficheros\\Alojados\\jugadores.txt";
         String ficheroSalida = "C:\\Users\\SRQ2\\Desktop\\ALBERTO FP\\Programación\\Ficheros\\Alojados\\alojadosHotel.txt";
-        ordenar(ficheroEntrada, ficheroSalida);
+        copiar(ficheroEntrada, ficheroSalida);
     }
 }

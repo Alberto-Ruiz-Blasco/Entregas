@@ -12,8 +12,16 @@ public class Alojados {
         try (BufferedReader br = new BufferedReader(new FileReader(ficheroEntrada))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                if (linea.substring(linea.length() - 3).contains("H")) {
-                    lineas.add(linea);
+                String[] campos = linea.split(";");
+
+                if (campos.length>=3){
+                    String primerCampo = campos[0];
+                    String tercerCampo = campos[2];
+                    String septimoCampo = campos[7];
+
+                    if (septimoCampo.contains("H")) {
+                        lineas.add(primerCampo + "; " + tercerCampo);
+                    }
                 }
             }
         } catch (IOException e) {

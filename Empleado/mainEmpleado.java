@@ -268,22 +268,22 @@ public class mainEmpleado {
     }
 
     public static void imprimirXML(){
-        File archivo = new File("C:\\Users\\SRQ2\\Desktop\\ALBERTO FP\\Programación\\Ficheros\\xml.xml");
+        File archivo = new File("C:\\Users\\SRQ2\\Desktop\\ALBERTO FP\\Programación\\Ficheros\\xml.txt");
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))){
             writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-            writer.write("<empleados>");
+            writer.write("<empleados>\n");
 
             for (Empleado empleado : datosempleado.getListaEmpleados()) {
-                writer.write("    <empleado>");
-                writer.write("        <id>" + empleado.getId() + "</id>");
-                writer.write("        <nombre>" + empleado.getNombre() + "</nombre>");
-                writer.write("        <cargo>" + empleado.getCargo() + "</cargo>");
-                writer.write("        <fechaContratacion>" + empleado.getFcontratacion() + "</fechaContratacion>");
-                writer.write("    </empleado>");
+                writer.write("    <empleado>\n");
+                writer.write("        <id>" + empleado.getId() + "</id>\n");
+                writer.write("        <nombre>" + empleado.getNombre() + "</nombre>\n");
+                writer.write("        <cargo>" + empleado.getCargo() + "</cargo>\n");
+                writer.write("        <fechaContratacion>" + empleado.getFcontratacion() + "</fechaContratacion>\n");
+                writer.write("    </empleado>\n");
             }
 
-            writer.write("</empleados>");
+            writer.write("</empleados>\n");
             System.out.println("Se ha generado el archvo correctamente");
         } catch (IOException e){
             System.out.println("No se ha podido generar el xml");

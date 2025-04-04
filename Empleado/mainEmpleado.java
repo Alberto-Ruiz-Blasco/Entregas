@@ -1,5 +1,9 @@
-// Alberto Ruiz Blasco
+package datosXML;// Alberto Ruiz Blasco
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -19,7 +23,8 @@ public class mainEmpleado {
         System.out.println("|4- Consultar empleado               |");
         System.out.println("|5- Imprimir lista de empleados      |");
         System.out.println("|6- Imprimir menú                    |");
-        System.out.println("|7- Imprimir empleados en formato XML|");
+        System.out.println("|7- Generar fichero en formato XML|");
+        System.out.println("|8- Información de las clases        |");
         System.out.println("-------------------------------------|");
     }
 
@@ -124,7 +129,7 @@ public class mainEmpleado {
             return;
         }
         datosempleado.removeEmployee(empleado);
-        System.out.println("<<Empleado eliminado>>");
+        System.out.println("<<datosXML.Empleado eliminado>>");
     }
 
     public static void actualizarEmpleado() {
@@ -160,7 +165,7 @@ public class mainEmpleado {
 
         Empleado oldEmployee = datosempleado.queryEmpleado(id);
         if (oldEmployee == null) {
-            System.out.println("Empleado no encontrado");
+            System.out.println("datosXML.Empleado no encontrado");
             return;
         }
 
@@ -217,7 +222,7 @@ public class mainEmpleado {
 
         Empleado newEmployee = new Empleado(newId, newName, newCargo, newDate);
         datosempleado.updateEmpleado(oldEmployee, newEmployee);
-        System.out.println("Empleado actualizado");
+        System.out.println("datosXML.Empleado actualizado");
     }
 
     public static void consultarEmpleado() {
@@ -263,19 +268,40 @@ public class mainEmpleado {
     }
 
     public static void imprimirXML(){
-        System.out.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-        System.out.println("<empleados>");
+        File archivo = new File("C:\\Users\\SRQ2\\Desktop\\ALBERTO FP\\Programación\\Ficheros\\xml.xml");
 
-        for (Empleado empleado : datosempleado.getListaEmpleados()) {
-            System.out.println("    <empleado>");
-            System.out.println("        <id>" + empleado.getId() + "</id>");
-            System.out.println("        <nombre>" + empleado.getNombre() + "</nombre>");
-            System.out.println("        <cargo>" + empleado.getCargo() + "</cargo>");
-            System.out.println("        <fechaContratacion>" + empleado.getFcontratacion() + "</fechaContratacion>");
-            System.out.println("    </empleado>");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))){
+            writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+            writer.write("<empleados>");
+
+            for (Empleado empleado : datosempleado.getListaEmpleados()) {
+                writer.write("    <empleado>");
+                writer.write("        <id>" + empleado.getId() + "</id>");
+                writer.write("        <nombre>" + empleado.getNombre() + "</nombre>");
+                writer.write("        <cargo>" + empleado.getCargo() + "</cargo>");
+                writer.write("        <fechaContratacion>" + empleado.getFcontratacion() + "</fechaContratacion>");
+                writer.write("    </empleado>");
+            }
+
+            writer.write("</empleados>");
+            System.out.println("Se ha generado el archvo correctamente");
+        } catch (IOException e){
+            System.out.println("No se ha podido generar el xml");
         }
+    }
 
-        System.out.println("</empleados>");
+    public static void infoclase(Object o)
+    {
+        Class<?> c;
+        c=o.getClass();
+        System.out.println("Nombre de la clase: "+c.getName());
+        System.out.println("Nombre del paquete: "+c.getPackage().getName());
+        System.out.println("Hereda de la clase: "+c.getSuperclass().getName());
+        System.out.println("Posee los campos:");
+        for (int i=0;i<c.getDeclaredFields().length;i++)
+        {
+            System.out.println("\t"+ ""+c.getDeclaredFields()[i].getName()+ " "+c.getDeclaredFields()[i].getType().getName());
+        }
     }
 
     public static void main(String[] args) {
@@ -289,15 +315,15 @@ public class mainEmpleado {
                     System.out.print("Elige una opción: ");
                     opcion = scanner.nextInt();
 
-                    if (opcion < 0 || opcion > 8) {
-                        System.out.println("<<OPCIÓN NO VÁLIDA>> Debe ser un número entre 0 y 7");
+                    if (opcion < 0 || opcion > 9) {
+                        System.out.println("<<OPCIÓN NO VÁLIDA>> Debe ser un número entre 0 y 8");
                     }
                 } catch (Exception e) {
                     System.out.println("<<ERROR>> Debes ingresar un número válido");
                     scanner.next();
                     opcion = -1;
                 }
-            } while (opcion < 0 || opcion > 8);
+            } while (opcion < 0 || opcion > 9);
 
             switch (opcion) {
                 case 0:
@@ -324,6 +350,10 @@ public class mainEmpleado {
                     break;
                 case 7:
                     imprimirXML();
+                    break;
+                case 8:
+                    Empleado emp = new Empleado(1, "Pepe", "Jefe", LocalDate.of(1990, 2, 10));
+                    infoclase(emp);
                     break;
                 default:
                     System.out.println("OPCIÓN NO VÁLIDA");

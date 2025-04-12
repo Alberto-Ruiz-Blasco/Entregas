@@ -6,11 +6,11 @@ import javafx.scene.control.TextField;
 public class HelloController {
 
     @FXML
-    private TextField display; // Campo para mostrar el resultado
+    private TextField display;
 
-    private double firstNumber = 0;    // Primer número
-    private String operation = "";    // Operación (suma, resta, etc.)
-    private boolean isNewInput = true; // Controla el reinicio tras una operación
+    private double firstNumber = 0; 
+    private String operation = ""; 
+    private boolean isNewInput = true; 
 
     @FXML
     private void handleNumber(javafx.event.ActionEvent event) {

@@ -23,7 +23,7 @@ public class mainEmpleado {
         System.out.println("|4- Consultar empleado               |");
         System.out.println("|5- Imprimir lista de empleados      |");
         System.out.println("|6- Imprimir menú                    |");
-        System.out.println("|7- Generar fichero en formato XML|");
+        System.out.println("|7- Generar fichero en formato XML   |");
         System.out.println("|8- Información de las clases        |");
         System.out.println("-------------------------------------|");
     }

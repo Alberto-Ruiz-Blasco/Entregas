@@ -1,12 +1,10 @@
-package Consumer.Ejercicio12;
+package Consumer;
 
-import java.time.LocalDate;
 import java.util.function.Supplier;
 
-public class mainProgramador {
+public class Ejercicio4 {
     public static void main(String[] args) {
-        Supplier<Programador> programador =()-> new Programador("Pepe", 3, LocalDate.of(2024, 7, 12));
-        Programador progr = programador.get();
-        System.out.println(progr);
+        Supplier<String> palabra = () -> "Java es un lenguaje de programación";
+        System.out.println(palabra.get());
     }
 }
